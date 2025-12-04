@@ -9,7 +9,7 @@ async function helpCommand(sock, chatId, message) {
         channelLink: "https://whatsapp.com/channel/0029VbBi0ynFy725j1R1G70S",
         groupLink: "https://chat.whatsapp.com/CEvcxfjrjxQIBcoTMboExy",
         newsletterJid: '0029VbBi0ynFy725j1R1G70S@newsletter',
-        newsletterName: '𝐂𝐇𝐀𝐈𝐑𝐌𝐀𝐍 𝐁𝐎𝐓 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋'
+        newsletterName: '𝐂𝐇𝐀𝐈𝐑𝐌𝐀𝐍 𝐁𝐎𝐓'
     };
 
     const helpMessage = `

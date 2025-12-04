@@ -6,7 +6,8 @@ const path = require('path');
 
 async function githubCommand(sock, chatId, message) {
   try {
-    const res = await fetch('https://api.github.com/repos/mruniquehacker/Chairman-md');
+    // Your repository
+    const res = await fetch('https://api.github.com/repos/glen129/chairman');
     if (!res.ok) throw new Error('Error fetching repository data');
     const json = await res.json();
 
