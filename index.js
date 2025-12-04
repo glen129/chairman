@@ -269,8 +269,8 @@ async function startXeonBotInc() {
                         forwardingScore: 1,
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
-                            newsletterJid: '120363161513685998@newsletter',
-                            newsletterName: 'Chairman MD',
+                            newsletterJid: '0029VbBi0ynFy725j1R1G70S@newsletter',
+                            newsletterName: 'Chairman Bot Official',
                             serverMessageId: -1
                         }
                     }
