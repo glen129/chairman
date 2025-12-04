@@ -143,11 +143,14 @@ const { pmblockerCommand, readState: readPmBlockerState } = require('./commands/
 const settingsCommand = require('./commands/settings');
 const soraCommand = require('./commands/sora');
 
+// 📖 Story Command Import
+const storyCommand = require('./commands/story');
+
 // Global settings
 global.packname = settings.packname;
 global.author = settings.author;
 global.channelLink = "https://whatsapp.com/channel/0029Va90zAnIHphOuO8Msp3A";
-global.ytch = "Mr Unique Hacker";
+global.ytch = "Chairman Official";
 
 // Add this near the top of main.js with other global configurations
 const channelInfo = {
@@ -156,7 +159,7 @@ const channelInfo = {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
             newsletterJid: '120363161513685998@newsletter',
-            newsletterName: 'KnightBot MD',
+            newsletterName: 'Chairman Official',
             serverMessageId: -1
         }
     }
@@ -260,15 +263,6 @@ async function handleMessages(sock, messageUpdate, printLog) {
             return;
         }
 
-        /*  // Basic message response in private chat
-          if (!isGroup && (userMessage === 'hi' || userMessage === 'hello' || userMessage === 'bot' || userMessage === 'hlo' || userMessage === 'hey' || userMessage === 'bro')) {
-              await sock.sendMessage(chatId, {
-                  text: 'Hi, How can I help you?\nYou can use .menu for more info and commands.',
-                  ...channelInfo
-              });
-              return;
-          } */
-
         if (!message.key.fromMe) incrementMessageCount(chatId, senderId);
 
         // Check for bad words and antilink FIRST, before ANY other processing
@@ -370,6 +364,17 @@ async function handleMessages(sock, messageUpdate, printLog) {
         let commandExecuted = false;
 
         switch (true) {
+            // ═══════════════════════════════════════════════════════════
+            // 📖 STORY COMMAND - AI Powered Storyteller
+            // ═══════════════════════════════════════════════════════════
+            case userMessage.startsWith('.story'):
+                {
+                    const args = userMessage.slice(6).trim().split(/\s+/).filter(arg => arg);
+                    await storyCommand(sock, chatId, message, args);
+                    commandExecuted = true;
+                }
+                break;
+
             case userMessage === '.simage': {
                 const quotedMessage = message.message?.extendedTextMessage?.contextInfo?.quotedMessage;
                 if (quotedMessage?.stickerMessage) {
@@ -1096,13 +1101,12 @@ async function handleMessages(sock, messageUpdate, printLog) {
             case userMessage.startsWith('.facepalm'):
             case userMessage.startsWith('.face-palm'):
             case userMessage.startsWith('.animuquote'):
-            case userMessage.startsWith('.quote'):
             case userMessage.startsWith('.loli'):
                 {
                     const parts = userMessage.trim().split(/\s+/);
                     let sub = parts[0].slice(1);
                     if (sub === 'facepalm') sub = 'face-palm';
-                    if (sub === 'quote' || sub === 'animuquote') sub = 'quote';
+                    if (sub === 'animuquote') sub = 'quote';
                     await animeCommand(sock, chatId, message, [sub]);
                 }
                 break;
